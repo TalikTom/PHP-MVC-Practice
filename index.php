@@ -16,11 +16,11 @@ set_include_path($paths);
 
 spl_autoload_register(function($class){
 
-    $putanje = explode(PATH_SEPARATOR,get_include_path());
+    $paths = explode(PATH_SEPARATOR,get_include_path());
     foreach($paths as $path){
 
         $file = $path . DIRECTORY_SEPARATOR .
-            $path . '.php';
+            $class . '.php';
 
         if(file_exists($file)){
             require_once $file;

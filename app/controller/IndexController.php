@@ -1,17 +1,13 @@
 <?php
 
-class IndexController extends Controller
+class IndexController
 {
 
 
 
-    public function index()
-    {
-
-        $this->view->render('index');
-
+    public function index(){
+        echo 'hello index controller';
     }
-
 
 
 }

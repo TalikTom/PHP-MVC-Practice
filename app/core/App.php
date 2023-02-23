@@ -5,7 +5,7 @@ class App
 
     public static function start()
     {
-        $route = Request::getRuta();
+        $route = Request::getRoute();
         $parts = explode('/',substr($route,1));
         $controller='';
         if(!isset($parts[0]) || $parts[0]===''){
