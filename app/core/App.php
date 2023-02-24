@@ -28,4 +28,23 @@ class App
     }
 
 
+    public static function config($key)
+    {
+        $configFile = BP_APP . 'config.php';
+
+        if(!file_exists($configFile)){
+            return "Config file doesn't exist!";
+        }
+
+        $config = require $configFile;
+
+        if(!isset($config[$key])){
+            return 'Key ' . $key . ' was not set in the config file';
+        }
+
+        return $config[$key];
+
+    }
+
+
 }
