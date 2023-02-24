@@ -1,12 +1,19 @@
 <?php
 
-class IndexController
+class IndexController extends Controller
 {
 
+    public function index()
+    {
 
+        $this->view->render('index');
 
-    public function index(){
-        echo 'hello index controller';
+    }
+
+    public function contact()
+    {
+        $this->view->render('contact');
+
     }
 
 

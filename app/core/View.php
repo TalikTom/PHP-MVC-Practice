@@ -6,7 +6,7 @@ class View
 
     private $template;
 
-    public function __construct($template='tempalte')
+    public function __construct($template='template')
     {
         $this->template = $template;
     }
