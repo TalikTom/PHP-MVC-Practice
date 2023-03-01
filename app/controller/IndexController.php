@@ -16,5 +16,13 @@ class IndexController extends Controller
 
     }
 
+    public function login()
+    {
+        $this->view->render('login', [
+            'message' => '',
+            'email' => '',
+        ]);
+    }
+
 
 }
