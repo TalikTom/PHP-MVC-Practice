@@ -5,7 +5,7 @@ class LoginController extends Controller
 {
     public function authorization()
     {
-        if(isset($_POST['email']) ||
+        if(!isset($_POST['email']) ||
         strlen(trim($_POST['email'])) === 0) {
             $this->view->render('login',[
                 'message' => 'You have to enter email',
@@ -13,5 +13,16 @@ class LoginController extends Controller
             ]);
             return;
         }
+
+        if(!isset($_POST['password']) ||
+        strlen(trim($_POST['password'])) === 0){
+            $this->view->render('login', [
+                'message' => 'Password required',
+                'email' => $_POST['email']
+            ]);
+            return;
+        }
     }
+
+
 }

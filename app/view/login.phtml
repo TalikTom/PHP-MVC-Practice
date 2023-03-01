@@ -1,0 +1,14 @@
+<form method="post"
+      action="<?=App::config('url');?>login/authorization">
+    <h4>Enter login data</h4>
+    <label>Email
+        <input type="email" name="email"
+               placeholder="example@smth.com"
+               value="<?=$email?>">
+    </label>
+    <label>Password
+        <input type="password" name="password" placeholder="Password">
+    </label>
+    <p><input type="submit" value="Login"></input></p>
+    <?=$message?>
+</form>
