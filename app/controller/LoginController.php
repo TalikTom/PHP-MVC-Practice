@@ -22,6 +22,19 @@ class LoginController extends Controller
             ]);
             return;
         }
+
+        $operator = Operator::authorize($_POST['email'], $_POST['password']);
+
+        if($operator == null){
+            $this->view->render('login', [
+                'message'=> 'Email and password are not a match',
+                'email' => $_POST['email']
+            ]);
+            return;
+        }
+
+        $_SESSION['auth'] = $operator;
+        header('location:' . App::config('url') . 'dashboard/index')
     }
 
 
