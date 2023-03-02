@@ -2,6 +2,15 @@ drop database if exists voyager;
 create database voyager charset utf8mb4;
 use voyager;
 
+create table operator
+(
+    sifra   int         not null primary key auto_increment,
+    ime     varchar(50) not null,
+    prezime varchar(50) not null,
+    email   varchar(50) not null,
+    lozinka char(61)    not null
+);
+
 create table department
 (
     odjel_id  int         not null auto_increment primary key,
@@ -68,6 +77,11 @@ alter table medical_record
 
 alter table doctor
     add foreign key (odjel_id) references department (odjel_id);
+
+
+insert into operator (ime, prezime, email, lozinka)
+values ('Luka', 'Operator', 'luka@gmail.com',
+        '$2y$10$vlnbKWhdDvVDIkR1R8PAseVYQK8ZwbrcwUCTChjFp6zsR3vLKkCoe');
 
 insert into department (naziv, broj_soba)
 values ('Kardiologija', 15);
