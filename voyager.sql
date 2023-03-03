@@ -8,7 +8,8 @@ create table operator
     firstName     varchar(50) not null,
     lastName varchar(50) not null,
     email   varchar(50) not null,
-    password char(61)    not null
+    password char(61)    not null,
+    role varchar(20) not null
 );
 
 create table department
@@ -79,9 +80,13 @@ alter table doctor
     add foreign key (department_id) references department (department_id);
 
 
-insert into operator (firstName, lastName, email, password)
+insert into operator (firstName, lastName, email, password, role)
 values ('Luka', 'Operator', 'luka@gmail.com',
-        '$2y$10$vlnbKWhdDvVDIkR1R8PAseVYQK8ZwbrcwUCTChjFp6zsR3vLKkCoe');
+        '$2y$10$vlnbKWhdDvVDIkR1R8PAseVYQK8ZwbrcwUCTChjFp6zsR3vLKkCoe', 'oper');
+
+insert into operator (firstName, lastName, email, password, role)
+values ('Ministar', 'Admin', 'admin@gmail.com',
+        '$2y$10$vlnbKWhdDvVDIkR1R8PAseVYQK8ZwbrcwUCTChjFp6zsR3vLKkCoe', 'admin');
 
 insert into department (naziv, broj_soba)
 values ('Kardiologija', 15);
