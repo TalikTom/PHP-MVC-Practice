@@ -4,82 +4,82 @@ use voyager;
 
 create table operator
 (
-    sifra   int         not null primary key auto_increment,
-    ime     varchar(50) not null,
-    prezime varchar(50) not null,
+    operator_id   int         not null primary key auto_increment,
+    firstName     varchar(50) not null,
+    lastName varchar(50) not null,
     email   varchar(50) not null,
-    lozinka char(61)    not null
+    password char(61)    not null
 );
 
 create table department
 (
-    odjel_id  int         not null auto_increment primary key,
-    naziv     varchar(50) not null,
-    broj_soba int
+    department_id  int         not null auto_increment primary key,
+    name     varchar(50) not null,
+    number_of_rooms int
 );
 
 create table patient
 (
-    pacijent_id int not null auto_increment primary key,
-    ime         varchar(50),
-    prezime     varchar(50),
-    adresa      varchar(255),
+    patient_id int not null auto_increment primary key,
+    firstName         varchar(50),
+    lastName     varchar(50),
+    address      varchar(255),
     oib         char(11),
-    doktor_id   int
+    doctor_id   int
 );
 
 create table doctor
 (
-    doktor_id       int not null auto_increment primary key,
-    ime             varchar(50),
-    prezime         varchar(50),
-    specijalizacija varchar(50),
+    doctor_id       int not null auto_increment primary key,
+    firstName             varchar(50),
+    lastName         varchar(50),
+    specialization varchar(50),
     oib             char(11),
-    odjel_id        int
+    department_id        int
 );
 
 create table medical_record
 (
-    medicinski_karton_id int not null auto_increment primary key,
-    datum_pregleda       datetime,
-    dijagnoza            varchar(255),
-    pacijent_id          int
+    medical_records_id int not null auto_increment primary key,
+    date       datetime,
+    diagnosis            varchar(255),
+    patient_id          int
 );
 
 create table patient_visitor
 (
-    posjeta_id          int not null auto_increment primary key,
-    datum               datetime,
-    pacijent_id         int,
-    posjetitelj_id      int,
-    max_trajanje_minute int
+    patient_visitor_id          int not null auto_increment primary key,
+    date               datetime,
+    patient_id         int,
+    visitor_id      int,
+    max_duration_min int
 );
 
 create table visitor
 (
-    posjetitelj_id  int not null auto_increment primary key,
-    ime             varchar(50),
-    prezime         varchar(50),
-    adresa          varchar(50),
-    telefonski_broj int
+    visitor_id  int not null auto_increment primary key,
+    firstName             varchar(50),
+    lastName         varchar(50),
+    address          varchar(50),
+    telephone_number int
 );
 
 alter table patient
-    add foreign key (doktor_id) references doctor (doktor_id);
+    add foreign key (doctor_id) references doctor (doctor_id);
 
 alter table patient_visitor
-    add foreign key (pacijent_id) references patient (pacijent_id);
+    add foreign key (patient_id) references patient (patient_id);
 alter table patient_visitor
-    add foreign key (posjetitelj_id) references visitor (posjetitelj_id);
+    add foreign key (visitor_id) references visitor (visitor_id);
 
 alter table medical_record
-    add foreign key (pacijent_id) references patient (pacijent_id);
+    add foreign key (patient_id) references patient (patient_id);
 
 alter table doctor
-    add foreign key (odjel_id) references department (odjel_id);
+    add foreign key (department_id) references department (department_id);
 
 
-insert into operator (ime, prezime, email, lozinka)
+insert into operator (firstName, lastName, email, password)
 values ('Luka', 'Operator', 'luka@gmail.com',
         '$2y$10$vlnbKWhdDvVDIkR1R8PAseVYQK8ZwbrcwUCTChjFp6zsR3vLKkCoe');
 
@@ -92,43 +92,43 @@ values ('Neurologija', 5);
 
 
 
-insert into doctor (ime, prezime, specijalizacija, oib, odjel_id)
+insert into doctor (firstName, lastName, specialization, oib, department_id)
 values ('Imzo', 'Prezimic', 'Kardiologija', 45798462514, 1);
-insert into doctor (ime, prezime, specijalizacija, oib, odjel_id)
+insert into doctor (firstName, lastName, specialization, oib, department_id)
 values ('Hrvoje', 'Samic', 'Psihijatrija', 45798212514, 2);
-insert into doctor (ime, prezime, specijalizacija, oib, odjel_id)
+insert into doctor (firstName, lastName, specialization, oib, department_id)
 values ('Gojka', 'Prezimic', 'Neurologija', 45298462514, 3);
 
-insert into patient (ime, prezime, adresa, oib, doktor_id)
+insert into patient (firstName, lastName, address, oib, doctor_id)
 values ('Marko', 'Marulic', 'Trosinska 21, Silas 31011', 15487569851, 1);
-insert into patient (ime, prezime, adresa, oib, doktor_id)
+insert into patient (firstName, lastName, address, oib, doctor_id)
 values ('Jovica', 'Jovic', 'B.B. Billmayera 41, Osijek 31000', 15487569851, 3);
-insert into patient (ime, prezime, adresa, oib, doktor_id)
+insert into patient (firstName, lastName, address, oib, doctor_id)
 values ('Sinan', 'Sakic', ' 21, Ernestinovo 31456', 15487239851, 2);
 
-insert into medical_record (datum_pregleda, dijagnoza, pacijent_id)
+insert into medical_record (date, diagnosis, patient_id)
 values ('2022-09-09',
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
         1);
-insert into medical_record (datum_pregleda, dijagnoza, pacijent_id)
+insert into medical_record (date, diagnosis, patient_id)
 values ('2022-08-08',
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
         2);
-insert into medical_record (datum_pregleda, dijagnoza, pacijent_id)
+insert into medical_record (date, diagnosis, patient_id)
 values ('2022-12-12',
         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
         3);
 
-insert into visitor (ime, prezime, adresa, telefonski_broj)
+insert into visitor (firstName, lastName, address, telephone_number)
 values ('Posjet', 'Kasnic', 'Ul. Inatise 76, Zupanja 32260', '098784652');
-insert into visitor (ime, prezime, adresa, telefonski_broj)
+insert into visitor (firstName, lastName, address, telephone_number)
 values ('Lakomisl', 'Trazic', 'Idarisa Sadrisa 2, Osijek 31000', '098782352');
-insert into visitor (ime, prezime, adresa, telefonski_broj)
+insert into visitor (firstName, lastName, address, telephone_number)
 values ('Butro', 'Rasnic', 'Trg Slobode 1, Zupanja 32260', '098784642');
 
-insert into patient_visitor (datum, pacijent_id, posjetitelj_id, max_trajanje_minute)
+insert into patient_visitor (date, patient_id, visitor_id, max_duration_min)
 values ('2022-12-09', 1, 1, 15);
-insert into patient_visitor (datum, pacijent_id, posjetitelj_id, max_trajanje_minute)
+insert into patient_visitor (date, patient_id, visitor_id, max_duration_min)
 values ('2022-12-08', 2, 2, 15);
-insert into patient_visitor (datum, pacijent_id, posjetitelj_id, max_trajanje_minute)
+insert into patient_visitor (date, patient_id, visitor_id, max_duration_min)
 values ('2022-12-07', 3, 3, 15);

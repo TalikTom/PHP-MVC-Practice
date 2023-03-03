@@ -5,6 +5,8 @@ class LoginController extends Controller
 {
     public function authorization()
     {
+
+        //check if email is set, if it's not execute following code block
         if(!isset($_POST['email']) ||
         strlen(trim($_POST['email'])) === 0) {
             $this->view->render('login',[
@@ -34,7 +36,7 @@ class LoginController extends Controller
         }
 
         $_SESSION['auth'] = $operator;
-        header('location:' . App::config('url') . 'dashboard/index')
+        header('location: /dashboard/index');
     }
 
 
