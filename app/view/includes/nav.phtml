@@ -1,6 +1,6 @@
 <header class="header">
     <div class="wrapper row">
-        <a href="#" class="logo" >
+        <a href="#" class="logo">
             <img src="public/img/logo.svg" alt="Logo" id="logo">
         </a>
         <nav class="nav">
@@ -11,8 +11,13 @@
                 <li class="nav__item"><a class="nav__link" href="#">Contact</a></li>
             </ul>
             <ul class="nav__list">
-                <li class="nav__item"><a class="nav__link" href="/index/login">Sign in</a></li>
-                <li class="nav__item "><a class="nav__link btn btn-small" href="#">Sign up</a></li>
+                <?php if (!App::auth()): ?>
+                    <li><a href="index/login">Prijava</a></li>
+                <?php else: ?>
+                    <li><a href="index/logout">Odjava <?php
+                            echo App::operator()
+                            ?></a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </div>

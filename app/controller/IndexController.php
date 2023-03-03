@@ -24,5 +24,11 @@ class IndexController extends Controller
         ]);
     }
 
+    public function logout()
+    {
+        unset($_SESSION['auth']);
+        session_destroy();
+        header('location: /');
+    }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class DashboardController extends AuthorizationController
+class DashboardController extends Controller
 {
 
 

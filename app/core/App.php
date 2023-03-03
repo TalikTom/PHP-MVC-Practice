@@ -51,5 +51,11 @@ class App
         return isset($_SESSION['auth']);
     }
 
+    public static function operator()
+    {
+        return $_SESSION['auth']->firstName
+            . ' ' . $_SESSION['auth']->lastName ;
+    }
+
 
 }
