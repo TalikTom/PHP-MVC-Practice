@@ -58,4 +58,10 @@ class App
     }
 
 
+    public static function admin()
+    {
+        return $_SESSION['auth']->role==='admin';
+    }
+
+
 }

@@ -12,6 +12,9 @@
                 <?php if (App::auth()): ?>
                     <li class="nav__item"><a class="nav__link" href="/dashboard/index">Dashboard</a></li>
                 <?php endif; ?>
+                <?php if (App::admin()): ?>
+                    <li class="nav__item"><a class="nav__link" href="/operator/index">Operators</a></li>
+                <?php endif; ?>
             </ul>
             <ul class="nav__list">
                 <?php if (!App::auth()): ?>

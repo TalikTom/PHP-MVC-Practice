@@ -88,11 +88,11 @@ insert into operator (firstName, lastName, email, password, role)
 values ('Ministar', 'Admin', 'admin@gmail.com',
         '$2y$10$vlnbKWhdDvVDIkR1R8PAseVYQK8ZwbrcwUCTChjFp6zsR3vLKkCoe', 'admin');
 
-insert into department (naziv, broj_soba)
+insert into department (name, number_of_rooms)
 values ('Kardiologija', 15);
-insert into department (naziv, broj_soba)
+insert into department (name, number_of_rooms)
 values ('Psihijatrija', 1);
-insert into department (naziv, broj_soba)
+insert into department (name, number_of_rooms)
 values ('Neurologija', 5);
 
 
